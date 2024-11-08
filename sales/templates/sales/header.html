@@ -1,0 +1,72 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand h1 mb-0" href="{% url 'welcome' %}">Advanced Programming</a>
+
+        <!-- button will appear when navbar is medium screen. (md) -->
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% comment %} if user is not authenticated {% endcomment %}
+                {% if not request.user.is_authenticated %}
+
+                    {% if page == 'welcome' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'welcome' %}">Welcome</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'welcome' %}">Welcome</a></li>
+                    {% endif %}
+
+                    {% if page == 'login' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'login' %}">Login</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    {% endif %}
+
+                    {% if page == 'register' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'register' %}">Register</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+
+                {% comment %} if user is authenticated {% endcomment %}
+                {% else %}
+
+                    {% comment %} {% if page == 'editUserNameOrEmail' or page == 'editUserPassword' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'editUserNameOrEmail' %}">@{{request.user.username}}</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'editUserNameOrEmail' %}">@{{request.user.username}}</a></li>
+                    {% endif %} {% endcomment %}
+
+                    {% if page == 'products' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'products' %}">Products</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'products' %}">Products</a></li>
+                    {% endif %}
+
+                    {% if page == 'discounted_product_list' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'discounted_product_list' %}">Discounted Products</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'discounted_product_list' %}">Discounted Products</a></li>
+                    {% endif %}
+
+                    {% if page == 'calculated_product_list' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="{% url 'calculated_product_list' %}">Calculated Products</a></li>
+                    {% else %}
+                        <li class="nav-item mx-4"><a class="nav-link" href="{% url 'calculated_product_list' %}">Calculated Products</a></li>
+                    {% endif %}
+
+                    {% if page == 'discount_plot' %}
+                        <li class="nav-item mx-4"><a class="nav-link active" href="#">Discount Plot</a></li>
+                    {% endif %}
+
+                    <li class="nav-item mx-4"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

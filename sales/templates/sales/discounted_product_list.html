@@ -1,27 +1,33 @@
-<!-- templates/sales/discounted_product_list.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Discounted Product List</title>
-</head>
-<body>
-    <h1>Discounted Product List</h1>
-    <table border="1">
-        <tr>
-            <th>Name</th>
-            <th>Original Price</th>
-            <th>Discounted Price</th>
-            <th>Discount Percentage</th>
-        </tr>
-        {% for product in discounted_products %}
-        <tr>
-            <td>{{ product.name }}</td>
-            <td>${{ product.get_price }}</td>
-            <td>${{ product.apply_discount }}</td>
-            <td>{{ product.discount_percentage }}%</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends 'sales/main.html' %}
+
+{% block title %}Discounted Product List{% endblock %}
+
+{% block content %}
+    <div class="container-md my-5">
+        <h1>Discounted Product List</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Original Price</th>
+                    <th>Discounted Price</th>
+                    <th>Discount Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in discounted_products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>${{ product.get_price }}</td>
+                        <td>${{ product.apply_discount }}</td>
+                        <td>{{ product.discount_percentage }}%</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No discounted products available</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
