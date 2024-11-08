@@ -1,0 +1,27 @@
+<!-- templates/sales/calculated_product_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculated Product List</title>
+</head>
+<body>
+    <h1>Calculated Product List</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Original Price</th>
+            <th>Additional Fee</th>
+            <th>Final Price</th>
+        </tr>
+        {% for product in calculated_products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>${{ product.get_price }}</td>
+            <td>${{ product.additional_fee }}</td>
+            <td>${{ product.calculate_final_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
